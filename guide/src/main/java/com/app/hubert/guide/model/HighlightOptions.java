@@ -11,6 +11,7 @@ public class HighlightOptions {
     public View.OnClickListener onClickListener;
     public RelativeGuide relativeGuide;
     public OnHighlightDrewListener onHighlightDrewListener;
+    public boolean isRemoveWhenClickHighLight;
 
     public static class Builder {
 
@@ -20,6 +21,13 @@ public class HighlightOptions {
             options = new HighlightOptions();
         }
 
+        /**
+         * 高亮点击事件
+         */
+        public Builder setRemoveWhenClickHighLight(boolean isRemoveWhenClickHighLight) {
+            options.isRemoveWhenClickHighLight = isRemoveWhenClickHighLight;
+            return this;
+        }
         /**
          * 高亮点击事件
          */

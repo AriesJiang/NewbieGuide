@@ -131,6 +131,9 @@ public class GuideLayout extends FrameLayout {
     private void notifyClickListener(HighLight highLight) {
         HighlightOptions options = highLight.getOptions();
         if (options != null) {
+            if (options.isRemoveWhenClickHighLight) {
+                remove();
+            }
             if (options.onClickListener!=null) {
                 options.onClickListener.onClick(this);
             }

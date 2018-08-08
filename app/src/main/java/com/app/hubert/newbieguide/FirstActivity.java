@@ -34,6 +34,15 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+        final HighlightOptions highlightOptions = new HighlightOptions.Builder()
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(FirstActivity.this, "高亮区点击事件", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setRemoveWhenClickHighLight(true).build();
+
         final Button btnSimple = (Button) findViewById(R.id.btn_simple);
         btnSimple.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +52,10 @@ public class FirstActivity extends AppCompatActivity {
 //                        .setShowCounts(3)//控制次数
                         .alwaysShow(true)//总是显示，调试时可以打开
                         .addGuidePage(GuidePage.newInstance()
-                                .addHighLight(btnSimple)
-                                .addHighLight(new RectF(0, 800, 200, 1200))
+//                                .addHighLight(btnSimple)
+                                .setEverywhereCancelable(false)//是否点击任意位置消失引导页
+                                .addHighLightWithOptions(btnSimple, highlightOptions)
+//                                .addHighLight(new RectF(0, 800, 200, 1200))
                                 .setLayoutRes(R.layout.view_guide_simple))
                         .show();
             }
